@@ -20,39 +20,48 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 8,
-              left: 8,
+      body: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
             ),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.6,
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image.asset("assets/images/bytebank_logo.png"),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 8,
+                    left: 8,
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: MediaQuery.of(context).size.width * 1,
+                    child: Image.asset("assets/images/bytebank_logo.png"),
+                  ),
+                ),
+                SizedBox(
+                  height: 110,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    Row(
+                      children: [
+                        // ignore: prefer_const_constructors
+                        FeatureItem(
+                            title: 'Transfer',
+                            icons: Icons.monetization_on,
+                            route: ContactsList()),
+                        FeatureItem(
+                            title: 'Transaction Feed',
+                            icons: Icons.description,
+                            route: TransactionsList()),
+                      ],
+                    ),
+                  ]),
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            height: 110,
-            child: ListView(scrollDirection: Axis.horizontal, children: [
-              Row(
-                children: [
-                  // ignore: prefer_const_constructors
-                  FeatureItem(
-                      title: 'Transfer',
-                      icons: Icons.monetization_on,
-                      route: ContactsList()),
-                  FeatureItem(
-                      title: 'Transaction Feed',
-                      icons: Icons.description,
-                      route: TransactionsList()),
-                ],
-              ),
-            ]),
-          ),
-        ],
+        ),
       ),
     );
   }
