@@ -1,9 +1,12 @@
 import 'package:curso_alura_2/components/transaction_auth_dialog.dart';
+import 'package:curso_alura_2/database/dao/contact_dao.dart';
 import 'package:flutter/material.dart';
 import 'screens/dashboard.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.contactDao}) : super(key: key);
+
+  final ContactDao contactDao;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
           secondary: Colors.green[900],
         ),
       ),
-      home: Dashboard(),
+      home: Dashboard(contactDao: ContactDao(),),
       debugShowCheckedModeBanner: false,
     );
   }

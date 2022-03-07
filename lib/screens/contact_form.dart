@@ -1,19 +1,25 @@
-import 'package:curso_alura_2/models/contact.dart';
 import 'package:flutter/material.dart';
+
+import 'package:curso_alura_2/models/contact.dart';
+
 import '../components/text_field_components.dart';
 import '../database/dao/contact_dao.dart';
 
 class ContactForm extends StatefulWidget {
-  const ContactForm({Key? key}) : super(key: key);
+  final ContactDao contactDao;
+
+  ContactForm({Key? key,required this.contactDao,}) : super(key: key);
 
   @override
-  State<ContactForm> createState() => _ContactFormState();
+  State<ContactForm> createState() => _ContactFormState(contactDao: contactDao);
 }
 
 class _ContactFormState extends State<ContactForm> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _accountNumber = TextEditingController();
-  final ContactDao _dao = ContactDao();
+  final ContactDao contactDao;
+
+  _ContactFormState({required this.contactDao});
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +50,9 @@ class _ContactFormState extends State<ContactForm> {
                     final int accountNumber = int.parse(_accountNumber.text);
 
                     setState(() {
-                      final newContact = Contact(name: name, accountNumber: accountNumber);
-                      _dao.save(newContact).then((id) => Navigator.pop(context));
+                      final newContact =
+                          Contact(name: name, accountNumber: accountNumber);
+                      save(newContact, context);
                     });
                   },
                 ))
@@ -53,7 +60,10 @@ class _ContactFormState extends State<ContactForm> {
         ),
       ),
     );
-    
   }
 
+  void save(Contact newContact, BuildContext context) async {
+    await contactDao.save(newContact);
+    Navigator.pop(context);
+  }
 }

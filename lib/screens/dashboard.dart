@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:curso_alura_2/database/dao/contact_dao.dart';
 import 'package:curso_alura_2/screens/contacts_list.dart';
 import 'package:curso_alura_2/widget/feature_item.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'transactions_list.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({Key? key, required this.contactDao}) : super(key: key);
+
+  final ContactDao contactDao;
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -49,7 +52,7 @@ class _DashboardState extends State<Dashboard> {
                         FeatureItem(
                             title: 'Transfer',
                             icons: Icons.monetization_on,
-                            route: ContactsList()),
+                            route: ContactsList(contactDao: ContactDao(),)),
                         FeatureItem(
                             title: 'Transaction Feed',
                             icons: Icons.description,

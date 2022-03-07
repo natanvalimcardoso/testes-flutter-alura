@@ -4,16 +4,17 @@ import 'package:curso_alura_2/models/contact.dart';
 import 'package:curso_alura_2/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
-
 class ContactsList extends StatefulWidget {
-  const ContactsList({Key? key}) : super(key: key);
+  final ContactDao contactDao;
+  ContactsList({Key? key, required this.contactDao}) : super(key: key);
 
   @override
-  State<ContactsList> createState() => _ContactsListState();
+  State<ContactsList> createState() => _ContactsListState(contactDao);
 }
 
 class _ContactsListState extends State<ContactsList> {
-  final ContactDao _dao = ContactDao();
+  final ContactDao contactDao;
+  _ContactsListState(this.contactDao);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _ContactsListState extends State<ContactsList> {
       ),
       body: FutureBuilder<List<Contact>>(
           initialData: [],
-          future: _dao.findAll(),
+          future: contactDao.findAll(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -56,9 +57,10 @@ class _ContactsListState extends State<ContactsList> {
           Icons.add,
         ),
         onPressed: () {
-          Navigator.of(context).push(
+          Navigator.of(context)
+              .push(
                 MaterialPageRoute(
-                  builder: (context) => ContactForm(),
+                  builder: (context) => ContactForm(contactDao: contactDao),
                 ),
               )
               .then(

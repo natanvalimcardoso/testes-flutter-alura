@@ -1,3 +1,4 @@
+import 'package:curso_alura_2/database/dao/contact_dao.dart';
 import 'package:curso_alura_2/screens/contacts_list.dart';
 import 'package:curso_alura_2/screens/dashboard.dart';
 import 'package:curso_alura_2/widget/feature_item.dart';
@@ -9,7 +10,7 @@ import 'matcher.dart';
 void main() {
   testWidgets('Deve mostrar na main a imagem quando o dashboard está aberto',
       (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: Dashboard()));
+    await tester.pumpWidget(MaterialApp(home: Dashboard(contactDao: ContactDao(),)));
     final mainImage = find.byType(
         Image); // SERVE PARA BUSCAR O ELEMENTO NA TELA E VER SE ELE ESTÁ VISIVEL OU NÃO
     expect(mainImage, findsNWidgets(1)); // VERIFICA SE ACHOU 1 ELEMENTO
@@ -17,7 +18,7 @@ void main() {
   testWidgets(
     'Deve mostrar a funcionalidade de tranfer quando o dashboard está aberto',
     (tester) async {
-      await tester.pumpWidget(MaterialApp(home: Dashboard()));
+      await tester.pumpWidget(MaterialApp(home: Dashboard(contactDao: ContactDao(),)));
       (tester) async {
         final transferFeatureItem = find.byWidgetPredicate((widget) =>
             featureItemMatcher(widget, 'Transfer', Icons.monetization_on));
@@ -28,7 +29,7 @@ void main() {
   testWidgets(
     'Deve mostrar a funcionalidade de transaction feed quando o dashboard está aberto*',
     (tester) async {
-      await tester.pumpWidget(MaterialApp(home: Dashboard()));
+      await tester.pumpWidget(MaterialApp(home: Dashboard(contactDao: ContactDao())));
       (tester) async {
         final transferFeatureItem = find.byWidgetPredicate((widget) =>
             featureItemMatcher(widget, 'Transaction Feed', Icons.description)); // Função está sendo chamada a baixo

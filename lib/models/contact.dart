@@ -15,4 +15,14 @@ class Contact {
     data['accountNumber'] = this.accountNumber;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) => // Serve para comparar se dois objetos são iguais ou não EM TESTES
+      identical(this, other) ||
+      other is Contact &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          accountNumber == other.accountNumber;
+  @override
+  int get hashCode => name.hashCode ^ accountNumber.hashCode;
 }
