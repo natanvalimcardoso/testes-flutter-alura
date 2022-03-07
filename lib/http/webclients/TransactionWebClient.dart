@@ -25,7 +25,7 @@ class TransactionWebClient {
         },
         body: transactionJson).timeout(const Duration(seconds: 2));
 
-      
+      //
 
     if (response.statusCode != 200) {
       _throwHttpError(response);

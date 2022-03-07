@@ -65,10 +65,9 @@ class _TransactionFormState extends State<TransactionForm> {
                   child: ElevatedButton(
                     child: Text('Transfer'),
                     onPressed: () {
-                      final double? value =
-                          double.tryParse(_valueController.text);
+                      final double? value = double.tryParse(_valueController.text);
                       final transactionCreated =
-                          Transaction(value: value, contact: widget.contact);
+                          Transaction(value: value!, contact: widget.contact);
                       showDialog(
                           context: context,
                           builder: (contextDialog) {
