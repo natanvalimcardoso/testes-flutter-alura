@@ -4,6 +4,8 @@ import 'package:curso_alura_2/widget/feature_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'matcher.dart';
+
 void main() {
   testWidgets('Deve mostrar na main a imagem quando o dashboard está aberto',
       (WidgetTester tester) async {
@@ -38,9 +40,4 @@ void main() {
 
 
 
-//* Funções
-bool featureItemMatcher(Widget widget, String name, IconData icon) { // FUNÇÃO PARA VERIFICAR SE O WIDGET É O QUE EU QUERO, PARA NÃO TER QUE REPETIR O CÓDIGO
-  return widget is FeatureItem &&
-          widget.title == name &&
-          widget.icons == icon;
-}
+
