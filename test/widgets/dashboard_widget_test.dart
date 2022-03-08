@@ -5,7 +5,7 @@ import 'package:curso_alura_2/widget/feature_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'matcher.dart';
+import '../matchers/matcher.dart';
 
 void main() {
   testWidgets('Deve mostrar na main a imagem quando o dashboard está aberto',

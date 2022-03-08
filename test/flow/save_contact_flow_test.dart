@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'matcher.dart';
-import 'mocks.dart';
+import '../matchers/matcher.dart';
+import '../mocks/mocks.dart';
 
 void main(){
   testWidgets('Deve salvar um contato', (tester) async{
@@ -76,15 +76,4 @@ bool textFieldMatcher(Widget widget, String labelText) {
   return false;
 }
 
-// void main() {
-//   group('When Dashboard is opened', () {
-//     testWidgets('Should display the main image', (WidgetTester tester) async {
-//       //test code
-//     testWidgets('Should display the transfer feature', (tester) async {
-//       //test code
-//     testWidgets('Should display the transaction feed feature', (tester) async {
-//       //test code
-//     });
-//   });
-// }
 
