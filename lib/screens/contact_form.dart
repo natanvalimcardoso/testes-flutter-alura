@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-
 import 'package:curso_alura_2/models/contact.dart';
-
 import '../components/text_field_components.dart';
 import '../database/dao/contact_dao.dart';
+import '../dependecies/app_dependencies.dart';
 
 class ContactForm extends StatefulWidget {
-  final ContactDao contactDao;
-
-  ContactForm({Key? key,required this.contactDao,}) : super(key: key);
+  ContactForm({Key? key}) : super(key: key);
 
   @override
-  State<ContactForm> createState() => _ContactFormState(contactDao: contactDao);
+  State<ContactForm> createState() => _ContactFormState();
 }
 
 class _ContactFormState extends State<ContactForm> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _accountNumber = TextEditingController();
-  final ContactDao contactDao;
-
-  _ContactFormState({required this.contactDao});
 
   @override
   Widget build(BuildContext context) {
+    final dependencies = AppDependencies.of(context);
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Formulário'),
@@ -52,7 +48,7 @@ class _ContactFormState extends State<ContactForm> {
                     setState(() {
                       final newContact =
                           Contact(name: name, accountNumber: accountNumber);
-                      save(newContact, context);
+                      _save(dependencies!.contactDao, newContact, context);
                     });
                   },
                 ))
@@ -62,7 +58,7 @@ class _ContactFormState extends State<ContactForm> {
     );
   }
 
-  void save(Contact newContact, BuildContext context) async {
+  void _save(ContactDao contactDao, Contact newContact, BuildContext context) async {
     await contactDao.save(newContact);
     Navigator.pop(context);
   }

@@ -8,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'transactions_list.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key, required this.contactDao}) : super(key: key);
+  const Dashboard({Key? key}) : super(key: key);
 
-  final ContactDao contactDao;
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -52,7 +51,7 @@ class _DashboardState extends State<Dashboard> {
                         FeatureItem(
                             title: 'Transfer',
                             icons: Icons.monetization_on,
-                            route: ContactsList(contactDao: ContactDao(),)),
+                            route: ContactsList()),
                         FeatureItem(
                             title: 'Transaction Feed',
                             icons: Icons.description,
