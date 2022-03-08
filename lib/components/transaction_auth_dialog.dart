@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+const Key transactionAuhtDialogTextFieldKeyPasswordKey = Key('transactionAuhtDialogTextFieldKey');
 
 class TransactionAuthDialog extends StatefulWidget {
   
@@ -22,6 +23,7 @@ class _TransactionAuthDialogState extends State<TransactionAuthDialog> {
       child: AlertDialog(
         title: Text("Authenticate"),
         content: TextField(
+          key: transactionAuhtDialogTextFieldKeyPasswordKey,
           controller: _passwordController,
           decoration: InputDecoration(
             hintText: "Password",
